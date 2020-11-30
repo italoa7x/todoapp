@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+.panel {
+	background-color: #396EDF;
+	position: absolute;
+	left: 50%;
+	margin-left: -260px;
+	margin-top: 30px;
+	width: 520px;
+	height: 250px;
+	padding: 10px;
+	text-align: center;
+	font-size: 15px;
+	border-radius: 50px;
+}
+
+.panel label {
+	font-size: 15px;
+	color: white;
+	font-family: monospace;
+}
+
+.panel button {
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+.link-cadastro {
+	font-size: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+.link-cadastro:hover {
+	font-size: 15px;
+}
+
+.link {
+	font-size: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+.link:hover {
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.logo {
+	height: 100px;
+	max-width: 150px;
+}
+
+.titulo {
+	font-size: 22px;
+	color: white;
+	font-family: sans-serif;
+}
+
+.subtitulo {
+	font-size: 13px;
+	color: white;
+	font-family: sans-serif;
+	font-weight: "400"
+}
+
+.tarefa {
+	width: 250px;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.listagem{
+	display: flex;
+	flex-direction: row;
+	 
+}
+

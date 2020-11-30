@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/styles.css"
+		rel="stylesheet" media="screen" />
+
+
+	<link href="../resources/bootstrap-4.5.3/dist/css/bootstrap.min.css"
+		rel="stylesheet" media="screen" />
+</h:head>
+<h:graphicImage value="/assets/todo.jpg" styleClass="logo" />
+<h:body styleClass="panel">
+	<h:form>
+		<p:messages id="mensagens" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		<!-- Título da tarefa -->
+		<p:outputLabel value="Título" />
+		<br />
+		<p:inputText id="campotitulo" value="#{tarefaBean.tarefa.nome}"
+			required="true" />
+		<br />
+		<p:outputLabel value="Descrição" />
+		<br />
+		<p:inputTextarea id="campodescricao" rows="5" cols="30"
+			maxlength="120" autoResize="true"
+			value="#{tarefaBean.tarefa.descricao}" required="true" />
+		<br />
+		<br />
+
+		<div
+			style="display: flex; flex-direction: column; width: 100px; align-items: center; margin-left: 200px">
+			<p:commandButton id="btsalvar" styleClass="btn btn-dark btn-sm"
+				style="color: white; font-size: 15px;" value="Salvar"
+				action="#{tarefaBean.salvar()}" />
+			<br />
+			<p:linkButton id="btvoltar" outcome="home.xhtml" value="Voltar"
+				styleClass="btn btn-danger btn-sm"
+				style="color: white; font-size: 15px;">
+			</p:linkButton>
+		</div>
+	</h:form>
+
+</h:body>
+</html>

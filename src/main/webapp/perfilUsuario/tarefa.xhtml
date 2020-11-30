@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:f="http://xmlns.jcp.org/jsf/core" 
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:jsf="http://xmlns.jcp.org/jsf"
+				xmlns:p="http://primefaces.org/ui">
+
+		<p:panel id="tarefaId" header="#{nome}"
+			style="display: flex; flex-direction: column; align-item: center; width: 300px; margin-top: 15px;">
+			<h:outputText value="#{descricao}" />
+			<br />
+			<br />
+			<h:outputText id="dtCriacao" value="#{data_criacao}">
+				<f:convertDateTime for="dtCriacao" pattern="dd/MM/yyyy" />
+			</h:outputText>
+			<br />
+			<br />
+			<h:outputText value="#{status}" />
+			<br />
+			<br />
+
+			<div
+				style="margin-left: 15px; display: flex; align-itens: center; justify-content: center;">
+				<p:draggable for="tarefaId" revert="true" />
+				<h:commandButton action="#{tarefaBean.finalizarTarefa}"
+					image="/assets/done.png" />
+				<h:commandButton action="#{tarefaBean.atualizarTarefa()}"
+					image="/assets/edit.png" />
+				<h:commandButton action="#{tarefaBean.excluirTarefa()}"
+					image="/assets/trash.png" />
+			</div>
+
+		</p:panel>
+		
+</ui:composition>
