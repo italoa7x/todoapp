@@ -13,7 +13,7 @@ public class TarefaConverter implements Converter<Tarefa> {
 
 	@EJB
 	private TarefaEjb servico;
-
+	// recebe um ID e retorna um objeto tarefa, é utilizado na pagina de home quando vai editar uma tarefa
 	@Override
 	public Tarefa getAsObject(FacesContext context, UIComponent component, String id) {
 		if(id.equals("") || id == null)
@@ -29,7 +29,7 @@ public class TarefaConverter implements Converter<Tarefa> {
 		}
 		return tarefa;
 	}
-
+	// recebe um objeto tarefa e retorna seu id
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Tarefa tarefa) {
 		System.out.println("TarefaConverter (Tarefa -> String) - id: "+tarefa);

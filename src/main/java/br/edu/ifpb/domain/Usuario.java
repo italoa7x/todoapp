@@ -36,7 +36,7 @@ public class Usuario implements Serializable {
 	@NotBlank
 	private String nome;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	@NotBlank
 	private String login;
 

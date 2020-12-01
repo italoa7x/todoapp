@@ -41,7 +41,7 @@ public class TarefaBean {
 
 	public TarefaBean() {
 	}
-
+	// inicia uma lista contendo as tarefas associadas ao usuario logado
 	@PostConstruct
 	public void init() {
 		System.out.println("TarefaBean criado.");
@@ -51,7 +51,7 @@ public class TarefaBean {
 		}
 		tarefasDoUsuarioLogado = usuarioService.buscarTarefasUsuario(usuarioLogado);
 	}
-
+	// retorna o usuario logado na sessao
 	public Usuario getUsuarioLogado() {
 		Usuario nomeUsuarioLogado = null;
 		Optional<UsuarioPrincipal> usuarioLogado = securityContext.getPrincipalsByType(UsuarioPrincipal.class).stream()
@@ -62,7 +62,7 @@ public class TarefaBean {
 
 		return nomeUsuarioLogado;
 	}
-
+	// salva uma nova tarefa
 	public String salvar() {
 		try {
 			Usuario usuarioLogado = getUsuarioLogado();
@@ -83,7 +83,7 @@ public class TarefaBean {
 		}
 		return "";
 	}
-
+	// atualiza uma tarefa
 	public String atualizarTarefa() {
 		try {
 			tarefaService.atualizarTarefa(tarefa);
@@ -94,7 +94,7 @@ public class TarefaBean {
 		}
 		return "";
 	}
-
+	// exclui uma tarefa
 	public String excluirTarefa(Tarefa t) {
 		System.out.println("clicou em excluir a tarefa" + t.getNome());
 		tarefaService.excluirTarefa(t);
@@ -102,14 +102,15 @@ public class TarefaBean {
 
 		return "/perfilUsuario/home.xhtml?faces-redirect=true";
 	}
-	
+	// exclui uma tarefa na pagina de historico, ela é diferente do metodo acima, pois nao
+	// retorna o usuario pra pagina home, ele dar uma refresh na pagina de historico
 	public String excluirTarefaDoHistorico(Tarefa t) {
 		System.out.println("clicou em excluir a tarefa" + t.getNome());
 		tarefaService.excluirTarefa(t);
 		tarefasDoUsuarioLogado.remove(t);
 		return "/perfilUsuario/historico-tarefas.xhtml?faces-redirect=true";
 	}
-
+	// finaliza uma tarefa
 	public void finalizarTarefa(Tarefa t) {
 		tarefaService.finalizarTarefa(t);
 	}
@@ -137,7 +138,7 @@ public class TarefaBean {
 	public void setTarefa(Tarefa tarefa) {
 		this.tarefa = tarefa;
 	}
-
+	// adiciona mensagens
 	private void adicionarMensagem(String mensagem) {
 		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(null, mensagem));
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);

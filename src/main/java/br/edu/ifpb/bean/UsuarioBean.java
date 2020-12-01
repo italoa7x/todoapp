@@ -1,24 +1,17 @@
 package br.edu.ifpb.bean;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Optional;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.SecurityContext;
 
-import br.edu.ifpb.domain.Tarefa;
 import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.ejb.UsuarioEjb;
-import br.edu.ifpb.util.AdicionarMensagem;
 import br.edu.ifpb.util.ExceptionSistema;
-import br.edu.ifpb.util.UsuarioPrincipal;
 
 @Named
 @RequestScoped
@@ -29,24 +22,24 @@ public class UsuarioBean implements Serializable {
 	@EJB
 	private UsuarioEjb usuarioService;
 
-	@Inject
-	private SecurityContext securityContext;
-
 	private Usuario usuario = new Usuario();
+	
+	@Inject
+	private FacesContext context;
 
 	public UsuarioBean() {
 		// TODO Auto-generated constructor stub
 	}
 
+	// salva um novo usuario
 	public String salvarUsuario() {
 
 		try {
 			Usuario result = this.usuarioService.salvar(usuario);
-			adicionarMensagem("cadastro finalizado");
+			System.out.println("usuario salvo " + result.getNome());
 			if (result != null) {
+				adicionarMensagem("cadastro finalizado");
 				return "/index.xhtml?faces-redirect=true";
-			} else {
-				adicionarMensagem("erro no cadastro. Verifique os dados");
 			}
 
 		} catch (ExceptionSistema e) {
@@ -63,8 +56,9 @@ public class UsuarioBean implements Serializable {
 		this.usuario = usuario;
 	}
 
+	// adiciona mensagens na tela
 	private void adicionarMensagem(String mensagem) {
-		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(null, null, mensagem));
+		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(mensagem));
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 	}
 

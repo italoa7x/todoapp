@@ -38,7 +38,7 @@ public class LoginBean {
 	public LoginBean() {
 		usuario = new Usuario();
 	}
-
+	// realiza o login no sistema
 	public String login() {
 		externalContext.getFlash().setKeepMessages(true);
 		AuthenticationStatus status = executaAutenticacao();
@@ -63,6 +63,7 @@ public class LoginBean {
 		return null;
 	}
 
+	// faz logout no sistema
 	public String logout() {
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		try {
@@ -76,7 +77,7 @@ public class LoginBean {
 		return null;
 
 	}
-
+	// executa a autenticaçao para o usuario
 	private AuthenticationStatus executaAutenticacao() {
 		return securityContext.authenticate((HttpServletRequest) externalContext.getRequest(),
 				(HttpServletResponse) externalContext.getResponse(), AuthenticationParameters.withParams()
@@ -91,6 +92,7 @@ public class LoginBean {
 		this.usuario = usuario;
 	}
 
+	// busca na sessão o usuario logado
 	public Usuario getUsuarioLogado() {
 		Usuario nomeUsuarioLogado = null;
 		Optional<UsuarioPrincipal> usuarioLogado = securityContext.getPrincipalsByType(UsuarioPrincipal.class).stream()
@@ -101,7 +103,7 @@ public class LoginBean {
 
 		return nomeUsuarioLogado;
 	}
-
+	// adiciona mensagens na tela
 	private void adicionarMensagem(String mensagem, String alerta) {
 		Severity alert = FacesMessage.SEVERITY_INFO;
 
