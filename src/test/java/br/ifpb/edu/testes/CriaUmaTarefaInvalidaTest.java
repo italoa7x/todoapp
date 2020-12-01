@@ -21,7 +21,7 @@ public class CriaUmaTarefaInvalidaTest {
 	}
 
 	@Test
-	public void testaCriarUmaNovaTarefaComTodosOsDados() throws InterruptedException {
+	public void testaCriarUmaNovaTarefaInvalida() throws InterruptedException {
 		driver.get("http://localhost:8080/todoapp/index.xhtml");
 		// realiza o login primeiro
 		// login: italo

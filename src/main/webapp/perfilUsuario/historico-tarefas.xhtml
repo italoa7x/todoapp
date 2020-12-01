@@ -17,23 +17,9 @@
 <h:body style="background-color: #396EDF;">
 
 	<h:form id="formMenu">
-		<h:outputLabel id="informacoes"
-			value="Olá, #{loginBean.usuarioLogado.nome}."
-			style="	
-			color: white;
-			font-size: 20px">
-
-		</h:outputLabel>
-		<p:menubar style="display: flex; justify-content: center;">
-			<p:menuitem id="menusair" value="Sair" action="#{loginBean.logout}"
-				styleClass="btn btn-danger" />
-			<p:menuitem id="menunovatarefa" value="Nova Tarefa"
-				url="novaTarefa.xhtml?faces-redirect=true"
-				styleClass="btn btn-primary" />
-
-			<p:menuitem id="menuhistorico" value="Histórico de tarefas" url="historico-tarefas.xhtml?faces-redirect=true" />
-		</p:menubar>
-
+		<p:linkButton id="btvoltar" outcome="home.xhtml" value="Voltar"
+			style="color: black; font-size: 15px; border-radius: solid 1px black;">
+		</p:linkButton>
 
 
 	</h:form>
@@ -42,7 +28,7 @@
 		<ui:repeat var="tarefa" value="#{tarefaBean.tarefasDoUsuarioLogado}">
 			<p:panel id="tarefa" styleClass="cardtarefa" header="#{tarefa.nome}"
 				style="display: flex; flex-direction: column; align-item: center; width: 300px; margin-top: 15px;"
-				rendered="#{tarefa.status == 'CRIADA'}">
+				rendered="#{tarefa.status == 'FINALIZADA'}">
 				<h:outputText value="#{tarefa.descricao}" />
 				<br />
 				<br />
@@ -58,16 +44,11 @@
 				<div id="tarefaId"
 					style="margin-left: 15px; display: flex; align-itens: center; justify-content: center;">
 					<p:draggable for="tarefa" revert="true" />
-					<h:commandButton id="btconcluirtarefa" action="#{tarefaBean.finalizarTarefa(tarefa)}"
-						image="/assets/done.png">
+					<h:commandButton id="btexcluirtarefa" styleClass="btn-trash"
+						action="#{tarefaBean.excluirTarefaDoHistorico(tarefa)}"
+						image="/assets/trash.png">
 						<f:ajax render="formList" />
 					</h:commandButton>
-					<h:link  id="bteditar" outcome="editarTarefa">
-						<h:graphicImage value="/assets/edit.png" />
-						<f:param name="id" value="#{tarefa.id}"></f:param>
-					</h:link>
-					<h:commandButton id="btexcluirtarefa" styleClass="btn-trash" action="#{tarefaBean.excluirTarefa(tarefa)}"
-						image="/assets/trash.png" />
 				</div>
 
 			</p:panel>

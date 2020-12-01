@@ -19,7 +19,7 @@ public class ExcluiUmaTarefaTest {
 	}
 
 	@Test
-	public void buscaAUnicaTarefaCadastradaEAtualizaSeusDados() throws InterruptedException {
+	public void testaExcluirUmaTarefa() throws InterruptedException {
 		driver.get("http://localhost:8080/todoapp/index.xhtml");
 		// realiza o login primeiro
 		// login: italo1

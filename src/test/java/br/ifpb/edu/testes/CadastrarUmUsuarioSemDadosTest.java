@@ -21,7 +21,7 @@ public class CadastrarUmUsuarioSemDadosTest {
 	}
 
 	@Test
-	public void testaCadastrarUmUsuario() throws InterruptedException {
+	public void testaCadastrarUmUsuarioSemDados() throws InterruptedException {
 		driver.get("http://localhost:8080/todoapp/index.xhtml");
 		Thread.sleep(3000);
 

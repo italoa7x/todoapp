@@ -21,7 +21,7 @@ public class RealizarLoginSemDadosTest {
 	}
 
 	@Test
-	public void testaLogarNoSistema() throws InterruptedException {
+	public void testaLogarNoSistemaSemDados() throws InterruptedException {
 		driver.get("http://localhost:8080/todoapp/index.xhtml");
 		WebElement campoLogin = driver.findElement(By.id("j_idt7:usuariologin"));
 		WebElement campoSenha = driver.findElement(By.id("j_idt7:usuariosenha"));

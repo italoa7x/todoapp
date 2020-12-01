@@ -52,7 +52,7 @@ public class Tarefa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusTarefa status;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Usuario usuario;
 
 	public Tarefa() {

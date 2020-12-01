@@ -37,7 +37,7 @@ public class TarefaBean {
 
 	private Tarefa tarefa = new Tarefa();
 
-	private List<Tarefa> tarefasDoUsuarioLogado;
+	private List<Tarefa> tarefasDoUsuarioLogado = new ArrayList<Tarefa>();
 
 	public TarefaBean() {
 	}
@@ -49,9 +49,7 @@ public class TarefaBean {
 		if (usuarioLogado == null) {
 			tarefasDoUsuarioLogado = new ArrayList<Tarefa>();
 		}
-		tarefasDoUsuarioLogado = usuarioService.buscarTarefasUsuario(usuarioLogado).size() == 0
-				|| usuarioService.buscarTarefasUsuario(usuarioLogado) == null ? new ArrayList<Tarefa>()
-						: usuarioService.buscarTarefasUsuario(usuarioLogado);
+		tarefasDoUsuarioLogado = usuarioService.buscarTarefasUsuario(usuarioLogado);
 	}
 
 	public Usuario getUsuarioLogado() {
@@ -103,6 +101,13 @@ public class TarefaBean {
 		tarefasDoUsuarioLogado.remove(t);
 
 		return "/perfilUsuario/home.xhtml?faces-redirect=true";
+	}
+	
+	public String excluirTarefaDoHistorico(Tarefa t) {
+		System.out.println("clicou em excluir a tarefa" + t.getNome());
+		tarefaService.excluirTarefa(t);
+		tarefasDoUsuarioLogado.remove(t);
+		return "/perfilUsuario/historico-tarefas.xhtml?faces-redirect=true";
 	}
 
 	public void finalizarTarefa(Tarefa t) {
